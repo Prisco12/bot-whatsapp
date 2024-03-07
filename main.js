@@ -1,5 +1,5 @@
 const qrcode = require('qrcode-terminal');
-const { Client } = require('whatsapp-web.js');
+const { Client, LocalAuth } = require('whatsapp-web.js');
 
 class Funcoes {
     msghitter(msgR, msgH){
@@ -14,7 +14,14 @@ class Funcoes {
  
 }
 
-const client = new Client();
+
+
+const client = new Client({
+    authStrategy: new LocalAuth({
+        dataPath: 'yourFolderName'
+    })
+});
+ 
 
 const funcoes = new Funcoes()
 

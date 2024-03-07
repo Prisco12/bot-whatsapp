@@ -36,6 +36,7 @@ function main () {
     });
 
     funcoes.msghitter('ping','pong')
+    funcoes.msghitter('pong','ping')
 
     client.initialize()
 }

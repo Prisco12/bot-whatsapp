@@ -43,21 +43,30 @@ function main () {
      client.on('message', async (message) => {
         if (message.body.startsWith('!audio ')){
             const frase = message.body.replace('!audio ', '')
-
             try {    
                 const audioPath = await funcoes.viraAudio(frase, message) // Caminho do arquivo de �udio
-                
-
                 const chat = await message.getChat();
                 const audio = MessageMedia.fromFilePath(audioPath);
-                chat.sendMessage(audio, { sendAudioAsVoice: true })
-                
-            } catch (error) {
-                console.error('Erro ao gerar ou enviar o áudio:', error);
-            }
+                await chat.sendMessage(audio, { sendAudioAsVoice: true })
+             } catch (error) {
+                 console.error('Erro ao gerar ou enviar o áudio:', error);
+             }
         }
      });
 
+
+     client.on('message', async (message) => {
+        if(message.type == 'image'){
+        const imagem = await message.downloadMedia()
+        if (message.body.startsWith('!sticker')) {
+            const stickerMedia = new MessageMedia('image/jpeg', imagem.data, 'image.jpeg' );
+            client.sendMessage(message.from, stickerMedia, {sendMediaAsSticker: true});
+        }
+        }
+     })
+
+
+   
     funcoes.msghitter('ping','pong')
     
     funcoes.msghitter('pong','ping')

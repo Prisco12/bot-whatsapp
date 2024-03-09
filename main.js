@@ -6,8 +6,8 @@ const { Client, LocalAuth, MessageMedia } = pkg;
 
 
 import Funcoes from './scripts.js';
-
 process.env.GOOGLE_APPLICATION_CREDENTIALS = 'composed-region-416600-af6bc7913fdc.json'; // Set the path to your Google Cloud service account key.
+
 
 const funcoes = Funcoes
 

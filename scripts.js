@@ -1,6 +1,7 @@
 import { SpeechClient } from '@google-cloud/speech'
 import pkg from 'whatsapp-web.js';
 const { Client, LocalAuth } = pkg;
+
 import gTTS from 'gtts'
 
 const client = new Client({

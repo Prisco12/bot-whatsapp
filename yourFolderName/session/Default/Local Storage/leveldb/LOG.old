@@ -1,3 +1,2 @@
-2024/03/09-13:57:49.686 6b64 Reusing MANIFEST C:\bot_whatsapp\bot-whatsapp\yourFolderName\session\Default\Local Storage\leveldb/MANIFEST-000001
-2024/03/09-13:57:49.686 6b64 Recovering log #6
-2024/03/09-13:57:49.687 6b64 Reusing old log C:\bot_whatsapp\bot-whatsapp\yourFolderName\session\Default\Local Storage\leveldb/000006.log 
+2024/03/10-11:49:38.138 2874 Creating DB C:\bot_whatsapp\bot-whatsapp\yourFolderName\session\Default\Local Storage\leveldb since it was missing.
+2024/03/10-11:49:38.209 2874 Reusing MANIFEST C:\bot_whatsapp\bot-whatsapp\yourFolderName\session\Default\Local Storage\leveldb/MANIFEST-000001

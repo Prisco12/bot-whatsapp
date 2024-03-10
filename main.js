@@ -1,6 +1,5 @@
-import codeqr from 'qrcode-terminal';
+import qrcode from 'qrcode-terminal';
 import pkg from 'whatsapp-web.js';
-const { generate } = codeqr;
 const { Client, LocalAuth, MessageMedia } = pkg;
 
 
@@ -20,7 +19,7 @@ const client = new Client({
 function main () {
 
     client.on('qr', (qr) => {
-        generate(qr, { small: true });
+        qrcode.generate(qr, { small: true });
     });
 
     client.on('ready', () => {

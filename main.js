@@ -1,7 +1,6 @@
 import qrcode from 'qrcode-terminal';
 import pkg from 'whatsapp-web.js';
-const { Client, LocalAuth, MessageMedia } = pkg;
-
+const { Client, LocalAuth, MessageMedia, Events, Globals} = pkg;
 
 
 import Funcoes from './scripts.js';
@@ -13,11 +12,14 @@ const funcoes = Funcoes
 const client = new Client({
   authStrategy: new LocalAuth({
       dataPath: 'yourFolderName'
-  })
+  }),
+  puppeteer: {
+		args: ['--no-sandbox'],
+	}
 });
 
 function main () {
-
+    
     client.on('qr', (qr) => {
         qrcode.generate(qr, { small: true });
     });
@@ -39,7 +41,7 @@ function main () {
          }
      });
 
-     client.on('message', async (message) => {
+    client.on('message', async (message) => {
         if (message.body.startsWith('!audio ')){
             const frase = message.body.replace('!audio ', '')
             try {    
@@ -51,10 +53,10 @@ function main () {
                  console.error('Erro ao gerar ou enviar o áudio:', error);
              }
         }
-     });
+    });
 
 
-     client.on('message', async (message) => {
+    client.on('message', async (message) => {
         if(message.type == 'image'){
         const imagem = await message.downloadMedia()
         if (message.body.startsWith('!sticker')) {
@@ -62,7 +64,26 @@ function main () {
             client.sendMessage(message.from, stickerMedia, {sendMediaAsSticker: true});
         }
         }
-     })
+    })
+
+    const sentMessages = new Map();
+
+    client.on('message', async (msg) => {
+         // Armazena a mensagem enviada no mapa 
+         sentMessages.set(msg.timestamp, {body: msg.body});
+    });
+     
+    client.on('message_revoke_everyone', async (revokedMsg) => {
+         const revokedMsgId = revokedMsg.timestamp;
+         // Verifica se a mensagem revogada está no mapa
+         if (sentMessages.has(revokedMsgId)) {
+             const originalMsg = sentMessages.get(revokedMsgId);
+             // Reenvia a mensagem revogada
+             await revokedMsg.reply(`Deus Está vendo 👀\n\nMensagem Apagada: " ${originalMsg.body} "`);
+         }
+    });
+
+    
 
 
    

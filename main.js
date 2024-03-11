@@ -98,7 +98,7 @@ function main() {
       const mage = await msg.downloadMedia();
       const imageRevoked = new MessageMedia("image/jpeg", mage.data);
       await client.sendMessage(msg.from, imageRevoked, {
-        caption: `"${msg.body}"\n\nDeus Está vendo 👀`,
+        caption: `"${msg.body}"\n\nVer uma vez Jamais - Deus Está vendo 👀`,
       });
     }
     console.log(sentMessages);
@@ -114,7 +114,7 @@ function main() {
       if (originalMsg.type == "image") {
         const imageRevoked = new MessageMedia("image/jpeg", originalMsg.body);
         await client.sendMessage(revokedMsg.from, imageRevoked, {
-          caption: `"${originalMsg.legenda}"\n\nVer uma vez Jamais - Deus Está vendo 👀`,
+          caption: `"${originalMsg.legenda}"\n\nDeus Está vendo 👀`,
         });
       }
       if (originalMsg.type == "sticker") {

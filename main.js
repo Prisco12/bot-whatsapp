@@ -69,17 +69,43 @@ function main () {
     const sentMessages = new Map();
 
     client.on('message', async (msg) => {
-         // Armazena a mensagem enviada no mapa 
-         sentMessages.set(msg.timestamp, {body: msg.body});
+        console.log(msg)
+        if(msg.type == 'chat'){
+            sentMessages.set(msg.timestamp, {body: msg.body, type: msg.type}, );
+        }
+        if(msg.type == 'image' && msg._data.isViewOnce == false){
+            const mage = await msg.downloadMedia()
+            sentMessages.set(msg.timestamp, {body: mage.data, type: msg.type, legenda: msg.body}, );
+        }
+
+        if(msg._data.isViewOnce == true && msg.type == 'image'){
+            const mage = await msg.downloadMedia()
+            const imageRevoked = new MessageMedia('image/jpeg', mage.data);
+            await client.sendMessage(msg.from, imageRevoked,{ caption: `"${msg.body}"\n\nDeus Está vendo 👀` });
+        }
+        
+
+       
+
+        console.log(sentMessages)
+         
     });
      
     client.on('message_revoke_everyone', async (revokedMsg) => {
-         const revokedMsgId = revokedMsg.timestamp;
-         // Verifica se a mensagem revogada está no mapa
-         if (sentMessages.has(revokedMsgId)) {
+
+        const revokedMsgId = revokedMsg.timestamp;
+        
+        if (sentMessages.has(revokedMsgId)) {
              const originalMsg = sentMessages.get(revokedMsgId);
+             console.log(originalMsg)
              // Reenvia a mensagem revogada
-             await revokedMsg.reply(`Deus Está vendo 👀\n\nMensagem Apagada: " ${originalMsg.body} "`);
+             if(originalMsg.type == 'image'){
+                const imageRevoked = new MessageMedia('image/jpeg', originalMsg.body);
+                await client.sendMessage(revokedMsg.from, imageRevoked,{ caption: `"${originalMsg.legenda}"\n\nDeus Está vendo 👀` });
+             }
+             if(originalMsg.type == 'chat'){
+                await revokedMsg.reply(`Deus Está vendo 👀\n\nMensagem Apagada: " ${originalMsg.body} "`);
+             }
          }
     });
 

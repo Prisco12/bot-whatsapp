@@ -98,7 +98,7 @@ function main() {
       const mage = await msg.downloadMedia();
       const imageRevoked = new MessageMedia("image/jpeg", mage.data);
       await client.sendMessage(msg.from, imageRevoked, {
-        caption: `"${msg.body}"\n\nVer uma vez Jamais - Deus Está vendo 👀`,
+        caption: `"${msg.body}"\n\nVer uma vez Jamais\nDeus Está vendo 👀`,
       });
     }
     console.log(sentMessages);

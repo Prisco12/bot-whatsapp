@@ -135,6 +135,23 @@ function main() {
     }
   });
 
+  client.on("message_edit", async (messageEdit) => {
+    const messageEditID = messageEdit.timestamp;
+
+    if (sentMessages.has(messageEditID)) {
+      const originalMsg = sentMessages.get(messageEditID);
+      console.log(originalMsg);
+      // Reenvia a mensagem revogada
+      if (originalMsg.type == "chat") {
+        await messageEdit.reply(
+          `Deus Está vendo 👀\n\nMensagem Editada: " ${originalMsg.body} "`
+        );
+      }
+      
+    }
+
+  });
+
   funcoes.msghitter("ping", "pong");
 
   funcoes.msghitter("pong", "ping");

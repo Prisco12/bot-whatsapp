@@ -7,6 +7,7 @@ import spech_to_audio from "./src/message/spech_to_audio.js";
 import image_to_sticker from "./src/message/image_to_sticker.js";
 import { saving_msg } from "./src/message/saving_msg.js";
 import avisos from "./src/message/avisos.js";
+import ajuda from "./src/message/ajuda.js";
 import return_msg from "./src/message_revoke_everyone/return_msg.js";
 import return_edit_msg from "./src/message_edit/return_edit_msg.js";
 
@@ -36,6 +37,7 @@ function main() {
     image_to_sticker(message);
     saving_msg(message);
     avisos(message);
+    ajuda(message);
   });
 
   client.on("message_revoke_everyone", async (revokedMsg) => {

@@ -14,6 +14,8 @@ const aviso = `🤖 *Bot para WhatsApp - Funcionalidades:*
 
 *Transcrição Automática de Áudio:* O bot é capaz de transcrever automaticamente todo áudio recebido em texto. Isso garante que os membros do grupo possam facilmente entender o conteúdo dos áudios, mesmo sem ouvi-los.
 
+*Verificação de Fotos de Visualização Única:* O bot verifica todas as fotos que são de visualização única e as envia de volta ao grupo.
+
 *Recuperação de Mensagens Apagadas:* Sempre que uma mensagem de texto, imagem ou sticker é apagada no grupo, o bot consegue recuperar o conteúdo da mensagem excluída e exibi-la novamente. Isso proporciona uma experiência mais completa aos membros do grupo.
 
 *Registro de Mensagens Editadas:* Quando uma mensagem é editada, o bot registra o conteúdo original da mensagem antes da edição, permitindo que os membros do grupo saibam o que foi alterado.`;

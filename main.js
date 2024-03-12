@@ -26,19 +26,15 @@ function main() {
     console.log("Client is ready!");
   });
 
-  client.on("message", (message) => {
-    console.log(message.body);
-  });
-
   client.on("message", async (message) => {
+    console.log(message.body);
+
     if (message.type == "ptt" || message.type == "audio") {
       const media = await message.downloadMedia();
       const data = await funcoes.trans(media);
       await message.reply(data);
     }
-  });
 
-  client.on("message", async (message) => {
     if (message.body.startsWith("!audio ")) {
       const frase = message.body.replace("!audio ", "");
       try {
@@ -50,9 +46,7 @@ function main() {
         console.error("Erro ao gerar ou enviar o áudio:", error);
       }
     }
-  });
 
-  client.on("message", async (message) => {
     if (message.type == "image") {
       const imagem = await message.downloadMedia();
       if (message.body.startsWith("!sticker")) {
@@ -66,73 +60,104 @@ function main() {
         });
       }
     }
-  });
 
-  const sentMessages = new Map();
-
-  client.on("message", async (msg) => {
-    console.log(msg);
-    if (msg.type == "chat") {
-      sentMessages.set(msg.timestamp, { body: msg.body, type: msg.type });
-    }
-    if (msg.type == "image" && msg._data.isViewOnce == false) {
-      const mage = await msg.downloadMedia();
-      sentMessages.set(msg.timestamp, {
-        body: mage.data,
-        type: msg.type,
-        legenda: msg.body,
-      });
-    }
-    if (msg.type == "sticker") {
-      const mage = await msg.downloadMedia();
-      sentMessages.set(msg.timestamp, {
-        body: mage.data,
-        type: msg.type,
-      });
-    }
-    if (msg.type == "ptt" || msg.type == "audio") {
-      const media = await msg.downloadMedia();
-      sentMessages.set(msg.timestamp, { body: media.data, type: msg.type });
-    }
-    if (msg._data.isViewOnce == true && msg.type == "image") {
-      const mage = await msg.downloadMedia();
+    // console.log(message);
+    // if (message.type == "chat") {
+    //   sentMessages.set(message.timestamp, {
+    //     body: message.body,
+    //     type: message.type,
+    //   });
+    // }
+    // if (message.type == "image" && message._data.isViewOnce == false) {
+    //   const mage = await message.downloadMedia();
+    //   sentMessages.set(message.timestamp, {
+    //     body: mage.data,
+    //     type: message.type,
+    //     legenda: message.body,
+    //   });
+    // }
+    // if (message.type == "sticker") {
+    //   const mage = await message.downloadMedia();
+    //   sentMessages.set(message.timestamp, {
+    //     body: mage.data,
+    //     type: message.type,
+    //   });
+    // }
+    // if (message.type == "ptt" || message.type == "audio") {
+    //   const media = await message.downloadMedia();
+    //   sentMessages.set(message.timestamp, {
+    //     body: media.data,
+    //     type: message.type,
+    //   });
+    // }
+    if (message._data.isViewOnce == true && message.type == "image") {
+      const mage = await message.downloadMedia();
       const imageRevoked = new MessageMedia("image/jpeg", mage.data);
-      await client.sendMessage(msg.from, imageRevoked, {
-        caption: `"${msg.body}"\n\nVer uma vez Jamais\nDeus Está vendo 👀`,
+      await client.sendMessage(message.from, imageRevoked, {
+        caption: `"${message.body}"\n\nVer uma vez Jamais\nDeus Está vendo 👀`,
       });
     }
-    console.log(sentMessages);
+
+    console.log("meme", message)
   });
 
-  client.on("message_revoke_everyone", async (revokedMsg) => {
-    const revokedMsgId = revokedMsg.timestamp;
-
-    if (sentMessages.has(revokedMsgId)) {
-      const originalMsg = sentMessages.get(revokedMsgId);
-      console.log(originalMsg);
-      // Reenvia a mensagem revogada
-      if (originalMsg.type == "image") {
-        const imageRevoked = new MessageMedia("image/jpeg", originalMsg.body);
-        await client.sendMessage(revokedMsg.from, imageRevoked, {
-          caption: `"${originalMsg.legenda}"\n\nDeus Está vendo 👀`,
-        });
-      }
-      if (originalMsg.type == "sticker") {
-        const imageRevoked = new MessageMedia("image/jpeg", originalMsg.body);
-        await client.sendMessage(revokedMsg.from, imageRevoked, {
-          sendMediaAsSticker: true,
-        });
-      }
-      if (originalMsg.type == "chat") {
-        await revokedMsg.reply(
-          `Deus Está vendo 👀\n\nMensagem Apagada: " ${originalMsg.body} "`
-        );
-      }
-      if (originalMsg.type == "ptt" || originalMsg.type == "audio") {
-        const mediaRkd = new MessageMedia("audio/ogg", originalMsg.body);
-        await client.sendMessage(revokedMsg.from, mediaRkd);
-      }
+  client.on("message_revoke_everyone", async (message, revokedMsg) => {
+    if (revokedMsg.hasMedia && revokedMsg.mediaStage) {
+        // Continue com a operação de download da mídia
+    } else {
+        console.log('A mensagem revogada não contém mídia ou a mídia não está disponível.');
     }
+    // console.log(test)
+    // console.log("aqui1")
+    // const imageRevoked = new MessageMedia("image/jpeg", test);
+    // console.log("aqui")
+    // await revokedMsg.reply(imageRevoked);
+
+
+
+    // if (revokedMsg.type == "chat") {
+    //     await revokedMsg.reply(
+    //       `Deus Está vendo 👀\n\nMensagem Apagada: " ${revokedMsg.body} "`
+    //     );
+    //   }
+
+    //   if (revokedMsg.type == "image" && revokedMsg._data.isViewOnce == false) {
+    //     console.log('etrei')
+    //         const mage = await revokedMsg.downloadMedia();
+    //         console.log("MEIDA ", mage)
+    //         const imageRevoked = new MessageMedia("image/jpeg", revokedMsg.body);
+    //         await client.sendMessage(revokedMsg.from, imageRevoked, {
+    //            caption: `"${revokedMsg.body}"\n\nDeus Está vendo 👀`,
+    //          });
+    //        }
+
+    // const revokedMsgId = revokedMsg.timestamp;
+
+    // if (sentMessages.has(revokedMsgId)) {
+    //   const originalMsg = sentMessages.get(revokedMsgId);
+    //   // Reenvia a mensagem revogada
+    //   if (originalMsg.type == "image") {
+    //     const imageRevoked = new MessageMedia("image/jpeg", originalMsg.body);
+    //     await client.sendMessage(revokedMsg.from, imageRevoked, {
+    //       caption: `"${originalMsg.legenda}"\n\nDeus Está vendo 👀`,
+    //     });
+    //   }
+    //   if (originalMsg.type == "sticker") {
+    //     const imageRevoked = new MessageMedia("image/jpeg", originalMsg.body);
+    //     await client.sendMessage(revokedMsg.from, imageRevoked, {
+    //       sendMediaAsSticker: true,
+    //     });
+    //   }
+    //   if (originalMsg.type == "chat") {
+    //     await revokedMsg.reply(
+    //       `Deus Está vendo 👀\n\nMensagem Apagada: " ${originalMsg.body} "`
+    //     );
+    //   }
+    //   if (originalMsg.type == "ptt" || originalMsg.type == "audio") {
+    //     const mediaRkd = new MessageMedia("audio/ogg", originalMsg.body);
+    //     await client.sendMessage(revokedMsg.from, mediaRkd);
+    //   }
+    // }
   });
 
   client.on("message_edit", async (messageEdit) => {
@@ -140,21 +165,14 @@ function main() {
 
     if (sentMessages.has(messageEditID)) {
       const originalMsg = sentMessages.get(messageEditID);
-      console.log(originalMsg);
       // Reenvia a mensagem revogada
       if (originalMsg.type == "chat") {
         await messageEdit.reply(
           `Deus Está vendo 👀\n\nMensagem Editada: " ${originalMsg.body} "`
         );
       }
-      
     }
-
   });
-
-  funcoes.msghitter("ping", "pong");
-
-  funcoes.msghitter("pong", "ping");
 
   client.initialize();
 }

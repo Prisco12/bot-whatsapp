@@ -3,12 +3,19 @@ const aviso = `🤖 *Bot para WhatsApp - Funcionalidades:*
 *Comandos*
 
 *!audio:* Este comando permite transformar texto em áudio. Basta digitar !audio seguido do texto desejado, e o bot irá gerar um arquivo de áudio correspondente.
+Ex: \`!audio\` aqui você escreve sua mensagem
 
 *!avisos:* Com o comando !avisos, você pode mencionar todos os membros do grupo e exibir uma mensagem para todos. Basta digitar !avisos seguido da mensagem que deseja compartilhar com o grupo.
+Ex: \`!avisos\` aqui você escreve sua mensagem
 
 *!sticker:* Ao enviar uma imagem com a mensagem !sticker, o bot transformará automaticamente essa imagem em um sticker. Isso facilita o compartilhamento de adesivos personalizados no grupo.
+Ex: *Img com a legenda* \`!sticker\`
 
 *!ajuda:* Este comando fornece informações sobre as funcionalidades do bot. Ao digitar !ajuda, o bot exibirá uma lista de comandos disponíveis e uma breve descrição de cada um.
+Ex: \`!ajuda\`
+
+*!gpt:* Este comando permite que você converse com um assistente virtual, baseado no ChatGPT. Ele está disponível para responder a perguntas, fornecer informações e realizar tarefas dentro do grupo do WhatsApp.
+Ex: \`!avisos\` aqui você escreve sua mensagem
 
 ‼️ *Informações sobre o Bot:* ‼️
 

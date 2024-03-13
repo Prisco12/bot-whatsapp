@@ -46,7 +46,7 @@ build/Release
 node_modules/
 jspm_packages/
 .wwebjs_cache/
-yourFolderName/
+BOT/
 
 # Snowpack dependency directory (https://snowpack.dev/)
 web_modules/

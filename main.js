@@ -5,6 +5,7 @@ const { Client, LocalAuth, MessageMedia, Events, Globals } = pkg;
 import text_to_spech from "./src/message/text_to_spech.js";
 import spech_to_audio from "./src/message/spech_to_audio.js";
 import image_to_sticker from "./src/message/image_to_sticker.js";
+import assistent from "./src/message/assistentAI.js";
 import { saving_msg } from "./src/message/saving_msg.js";
 import avisos from "./src/message/avisos.js";
 import ajuda from "./src/message/ajuda.js";
@@ -38,6 +39,7 @@ function main() {
     saving_msg(message);
     avisos(message);
     ajuda(message);
+    assistent(message)
   });
 
   client.on("message_revoke_everyone", async (revokedMsg) => {

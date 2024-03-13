@@ -15,7 +15,7 @@ Ex: *Img com a legenda* \`!sticker\`
 Ex: \`!ajuda\`
 
 *!gpt:* Este comando permite que você converse com um assistente virtual, baseado no ChatGPT. Ele está disponível para responder a perguntas, fornecer informações e realizar tarefas dentro do grupo do WhatsApp.
-Ex: \`!avisos\` aqui você escreve sua mensagem
+Ex: \`!gpt\` aqui você escreve sua mensagem
 
 ‼️ *Informações sobre o Bot:* ‼️
 

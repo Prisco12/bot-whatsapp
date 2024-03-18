@@ -39,4 +39,38 @@ export async function saving_msg(message) {
       caption: `"${message.body}"\n\nVer uma vez Jamais\nDeus Está vendo 👀`,
     });
   }
+  console.log("antes", sentMessages.size);
+
+  // Função para limpar o mapa
+  function limparMapa() {
+    sentMessages.clear();
+  }
+
+  // Variável para indicar se o mapa já foi limpo hoje
+  let jaLimpou = false;
+
+  // Verifica se é 14:10:00 e limpa o mapa apenas uma vez
+  function verificarLimpezaDiaria() {
+    const agora = new Date();
+    if (
+      !jaLimpou &&
+      agora.getHours() === 15 &&
+      agora.getMinutes() === 8 &&
+      agora.getSeconds() === 0
+    ) {
+      limparMapa();
+      console.log("dps", sentMessages.size);
+      jaLimpou = true;
+    } else if (
+      agora.getHours() !== 15 ||
+      agora.getMinutes() !== 8 ||
+      agora.getSeconds() !== 0
+    ) {
+      // Resetar a flag se não for mais 14:10:00
+      jaLimpou = false;
+    }
+  }
+
+  // Configurar temporizador para verificar a cada segundo
+  setInterval(verificarLimpezaDiaria, 1000); // Verificar a cada segundo
 }

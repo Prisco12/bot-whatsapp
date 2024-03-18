@@ -54,16 +54,16 @@ export async function saving_msg(message) {
     const agora = new Date();
     if (
       !jaLimpou &&
-      agora.getHours() === 15 &&
-      agora.getMinutes() === 8 &&
+      agora.getHours() === 0 &&
+      agora.getMinutes() === 0 &&
       agora.getSeconds() === 0
     ) {
       limparMapa();
       console.log("dps", sentMessages.size);
       jaLimpou = true;
     } else if (
-      agora.getHours() !== 15 ||
-      agora.getMinutes() !== 8 ||
+      agora.getHours() !== 0 ||
+      agora.getMinutes() !== 0 ||
       agora.getSeconds() !== 0
     ) {
       // Resetar a flag se não for mais 14:10:00

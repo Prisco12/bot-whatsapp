@@ -46,31 +46,41 @@ export async function saving_msg(message) {
     sentMessages.clear();
   }
 
-  // Variável para indicar se o mapa já foi limpo hoje
-  let jaLimpou = false;
+   
 
-  // Verifica se é 14:10:00 e limpa o mapa apenas uma vez
-  function verificarLimpezaDiaria() {
-    const agora = new Date();
-    if (
-      !jaLimpou &&
-      agora.getHours() === 0 &&
-      agora.getMinutes() === 0 &&
-      agora.getSeconds() === 0
-    ) {
-      limparMapa();
-      console.log("dps", sentMessages.size);
-      jaLimpou = true;
-    } else if (
-      agora.getHours() !== 0 ||
-      agora.getMinutes() !== 0 ||
-      agora.getSeconds() !== 0
-    ) {
-      // Resetar a flag se não for mais 14:10:00
-      jaLimpou = false;
-    }
-  }
+   // Verifica se é 14:10:00 e limpa o mapa apenas uma vez
+     if (sentMessages.size === 250) {
+       limparMapa();
+       console.log("dps", sentMessages.size);
+     }
+  
+ 
 
-  // Configurar temporizador para verificar a cada segundo
-  setInterval(verificarLimpezaDiaria, 1000); // Verificar a cada segundo
+  // // Variável para indicar se o mapa já foi limpo hoje
+  // let jaLimpou = false;
+
+  // // Verifica se é 14:10:00 e limpa o mapa apenas uma vez
+  // function verificarLimpezaDiaria() {
+  //   const agora = new Date();
+  //   if (
+  //     !jaLimpou &&
+  //     agora.getHours() === 0 &&
+  //     agora.getMinutes() === 0 &&
+  //     agora.getSeconds() === 0
+  //   ) {
+  //     limparMapa();
+  //     console.log("dps", sentMessages.size);
+  //     jaLimpou = true;
+  //   } else if (
+  //     agora.getHours() !== 0 ||
+  //     agora.getMinutes() !== 0 ||
+  //     agora.getSeconds() !== 0
+  //   ) {
+  //     // Resetar a flag se não for mais 14:10:00
+  //     jaLimpou = false;
+  //   }
+  // }
+
+  // // Configurar temporizador para verificar a cada segundo
+  // setInterval(verificarLimpezaDiaria, 1000); // Verificar a cada segundo
 }

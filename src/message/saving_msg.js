@@ -49,7 +49,7 @@ export async function saving_msg(message) {
    
 
    // Verifica se é 14:10:00 e limpa o mapa apenas uma vez
-     if (sentMessages.size === 250) {
+     if (sentMessages.size === 120) {
        limparMapa();
        console.log("dps", sentMessages.size);
      }

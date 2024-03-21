@@ -1,7 +1,7 @@
 import OpenAI from"openai"
 
 const openai = new OpenAI({
-  apiKey: "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",
+  apiKey: "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",
 });
 
 export default async function assistent(message) {
@@ -11,7 +11,7 @@ export default async function assistent(message) {
       messages: [{ role: "system", content: frase }],
       model: "gpt-3.5-turbo",
     });
-    await message.reply(completion.choices[0].message.content);
+        await message.reply(completion.choices[0].message.content);
   }
   
 }

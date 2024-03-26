@@ -42,8 +42,8 @@ function main() {
     assistent(message)
   });
 
-  client.on("message_revoke_everyone", async (revokedMsg) => {
-    return_msg(revokedMsg, client);
+  client.on("message_revoke_everyone", async (message,revokedMsg) => {
+    return_msg(message ,revokedMsg, client);
   });
 
   client.on("message_edit", async (messageEdit) => {

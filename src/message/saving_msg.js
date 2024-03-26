@@ -4,12 +4,12 @@ export const sentMessages = new Map();
 
 export async function saving_msg(message) {
   const client = await message.getChat();
-  if (message.type == "chat") {
-    sentMessages.set(message.timestamp, {
-      body: message.body,
-      type: message.type,
-    });
-  }
+  // if (message.type == "chat") {
+  //   sentMessages.set(message.timestamp, {
+  //     body: message.body,
+  //     type: message.type,
+  //   });
+  // }
   if (message.type == "image" && message._data.isViewOnce == false) {
     const mage = await message.downloadMedia();
     sentMessages.set(message.timestamp, {
@@ -49,7 +49,7 @@ export async function saving_msg(message) {
    
 
    // Verifica se é 14:10:00 e limpa o mapa apenas uma vez
-     if (sentMessages.size === 120) {
+     if (sentMessages.size === 50) {
        limparMapa();
        console.log("dps", sentMessages.size);
      }

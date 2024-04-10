@@ -39,7 +39,7 @@ export async function saving_msg(message) {
       caption: `"${message.body}"\n\nVer uma vez Jamais\nDeus Está vendo 👀`,
     });
   }
-  console.log("antes", sentMessages.size);
+  //console.log("antes", sentMessages.size);
 
   // Função para limpar o mapa
   function limparMapa() {
@@ -49,9 +49,9 @@ export async function saving_msg(message) {
    
 
    // Verifica se é 14:10:00 e limpa o mapa apenas uma vez
-     if (sentMessages.size === 50) {
+     if (sentMessages.size === 20) {
        limparMapa();
-       console.log("dps", sentMessages.size);
+       //console.log("dps", sentMessages.size);
      }
   
  

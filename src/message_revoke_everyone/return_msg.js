@@ -5,8 +5,8 @@ const { MessageMedia, Client } = pkg;
 export default async function return_msg(message, revokedMsg ,client) {
   const revokedMsgId = message.timestamp;
   const mensageRtrn = revokedMsg
-  console.log(mensageRtrn.body)
-  console.log(mensageRtrn)
+  //console.log(mensageRtrn.body)
+  //console.log(mensageRtrn)
   if (mensageRtrn.type == "chat") {
     await message.reply(
       `Deus Está vendo 👀\n\nMensagem Apagada:" ${mensageRtrn.body} "`

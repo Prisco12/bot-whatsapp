@@ -51,6 +51,6 @@ function main() {
     return_edit_msg(messageEdit);
   });
 
-  client.initialize();
+  client.initialize().catch(console.log)
 }
 main();

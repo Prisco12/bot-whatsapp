@@ -17,10 +17,10 @@ process.env.GOOGLE_APPLICATION_CREDENTIALS =
 
 const client = new Client({ 
   puppeteer: { 
-    headless: true, 
+    headless: true,
     args: ['--no-sandbox', '--disable-setuid-sandbox']
   }, 
-  sessão: sessionCfg });
+    session: sessionCfg });
 
 function main() {
   client.on("qr", (qr) => {

@@ -20,7 +20,7 @@ const client = new Client({
     dataPath: "BOT",
   }),
   puppeteer: {
-    args: ["--no-sandbox"],
+    args: ['--no-sandbox', '--disable-setuid-sandbox'],
   }
 });
 

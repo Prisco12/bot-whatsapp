@@ -1,7 +1,7 @@
 import OpenAI from"openai"
 
 const openai = new OpenAI({
-  apiKey: "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",
+  apiKey: "sk-None-j6ZwAjaiUypyhIKKLqHJT3BlbkFJdbAunaAqEVacHdz7vGMe",
 });
 
 export default async function assistent(message) {

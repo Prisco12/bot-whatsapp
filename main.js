@@ -15,14 +15,12 @@ import return_edit_msg from "./src/message_edit/return_edit_msg.js";
 process.env.GOOGLE_APPLICATION_CREDENTIALS =
   "composed-region-416600-af6bc7913fdc.json"; // Set the path to your Google Cloud service account key.
 
-const client = new Client({
-  authStrategy: new LocalAuth({
-    dataPath: "BOT",
-  }),
-  puppeteer: {
-    args: ['--no-sandbox', '--disable-setuid-sandbox'],
-  }
-});
+const client = new Client({ 
+  puppeteer: { 
+    headless: true, 
+    args: ['--no-sandbox', '--disable-setuid-sandbox']
+  }, 
+  sessão: sessionCfg });
 
 function main() {
   client.on("qr", (qr) => {

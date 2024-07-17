@@ -3,6 +3,7 @@ import pkg from "whatsapp-web.js";
 const { Client, LocalAuth, MessageMedia, Events, Globals } = pkg;
 
 import text_to_spech from "./src/message/text_to_spech.js";
+import youtubeToMp3 from "./src/message/youtubeToMp3.js";
 import spech_to_audio from "./src/message/spech_to_audio.js";
 import image_to_sticker from "./src/message/image_to_sticker.js";
 import assistent from "./src/message/assistentAI.js";
@@ -20,7 +21,7 @@ const client = new Client({
     dataPath: "BOT",
   }),
   puppeteer: {
-    executablePath: '/usr/bin/google-chrome',
+    // executablePath: '/usr/bin/google-chrome',
     headless: true,
     args: ['--no-sandbox', '--disable-setuid-sandbox'],
   }
@@ -42,6 +43,7 @@ function main() {
     avisos(message);
     ajuda(message);
     assistent(message)
+    youtubeToMp3(message)
   });
 
   client.on("message_revoke_everyone", async (message,revokedMsg) => {

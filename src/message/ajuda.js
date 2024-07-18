@@ -11,6 +11,9 @@ Ex: \`!avisos\` aqui você escreve sua mensagem
 *!sticker:* Ao enviar uma imagem com a mensagem !sticker, o bot transformará automaticamente essa imagem em um sticker. Isso facilita o compartilhamento de adesivos personalizados no grupo.
 Ex: *Img com a legenda* \`!sticker\`
 
+*!mp3:* Ao enviar uma link do *YouTube* com a mensagem !mp3, o bot enviará automaticamente o audio do video. Isso facilita o download de musicas, transformando os videos em audios.
+Ex: \`!mp3\` https://www.youtube.com/watch?v=diAHxFKNHBs
+
 *!ajuda:* Este comando fornece informações sobre as funcionalidades do bot. Ao digitar !ajuda, o bot exibirá uma lista de comandos disponíveis e uma breve descrição de cada um.
 Ex: \`!ajuda\`
 

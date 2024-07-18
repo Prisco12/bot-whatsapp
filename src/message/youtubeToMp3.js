@@ -9,7 +9,7 @@ export default async function youtubeToMp3(message) {
     try {
       const audioPath = await funcoes.youToMp3(url); // Caminho do arquivo de �udioc
       if (audioPath == false){
-        await message.reply('Download indisponivel, video maior que 3 minutos')
+        await message.reply('Download indisponivel, video maior que 5 minutos')
       } else {
         console.log(audioPath)
         const chat = await message.getChat();

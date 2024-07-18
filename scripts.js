@@ -80,7 +80,7 @@ class Funcoes {
       const fileUrl = data.data.link;
       const fileName = `modao.mp3`;
       const filePath = path.resolve(__dirname, fileName);
-      if(data.data.duration <= 180 ){
+      if(data.data.duration <= 300 ){
         return new Promise((resolve, reject) => {
           const file = fs.createWriteStream(filePath);
     

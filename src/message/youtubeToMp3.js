@@ -8,10 +8,15 @@ export default async function youtubeToMp3(message) {
     const url = message.body.replace("!mp3 ", "");
     try {
       const audioPath = await funcoes.youToMp3(url); // Caminho do arquivo de �udioc
-      console.log(audioPath)
-      const chat = await message.getChat();
-      const audio = MessageMedia.fromFilePath(audioPath);
-      await chat.sendMessage(audio, { sendAudioAsVoice: true });
+      if (audioPath == false){
+        await message.reply('Download indisponivel, video maior que 3 minutos')
+      } else {
+        console.log(audioPath)
+        const chat = await message.getChat();
+        const audio = MessageMedia.fromFilePath(audioPath);
+        await chat.sendMessage(audio, { sendAudioAsVoice: true });
+      }
+      
     } catch (error) {
       console.error("Erro ao gerar ou enviar o áudio:", error);
     }

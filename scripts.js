@@ -80,24 +80,28 @@ class Funcoes {
       const fileUrl = data.data.link;
       const fileName = `modao.mp3`;
       const filePath = path.resolve(__dirname, fileName);
-
-      return new Promise((resolve, reject) => {
-        const file = fs.createWriteStream(filePath);
-  
-        https.get(fileUrl, (response) => {
-          response.pipe(file);
-  
-          file.on('finish', () => {
-            file.close();
-            console.log(`Download completed: ${filePath}`);
-            resolve(filePath); // Resolva a Promise com o caminho do arquivo
+      if(data.data.duration <= 180 ){
+        return new Promise((resolve, reject) => {
+          const file = fs.createWriteStream(filePath);
+    
+          https.get(fileUrl, (response) => {
+            response.pipe(file);
+    
+            file.on('finish', () => {
+              file.close();
+              console.log(`Download completed: ${filePath}`);
+              resolve(filePath); // Resolva a Promise com o caminho do arquivo
+            });
+          }).on('error', (error) => {
+            fs.unlink(filePath, () => {}); // Remove the file on error
+            console.error("Error occurred while downloading the file:", error.message);
+            reject(error); // Rejeite a Promise em caso de erro
           });
-        }).on('error', (error) => {
-          fs.unlink(filePath, () => {}); // Remove the file on error
-          console.error("Error occurred while downloading the file:", error.message);
-          reject(error); // Rejeite a Promise em caso de erro
         });
-      });
+      } else {
+        return false
+      }
+
     } catch (error) {
       console.error("Error occurred:", error.message);
       throw error; // Rejeite a Promise se ocorrer um erro

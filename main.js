@@ -6,7 +6,7 @@ import text_to_spech from "./src/message/text_to_spech.js";
 import youtubeToMp3 from "./src/message/youtubeToMp3.js";
 import spech_to_audio from "./src/message/spech_to_audio.js";
 import image_to_sticker from "./src/message/image_to_sticker.js";
-import assistent from "./src/message/assistentAI.js";
+import {assistent, spechAI} from "./src/message/assistentAI.js";
 import { saving_msg } from "./src/message/saving_msg.js";
 import avisos from "./src/message/avisos.js";
 import ajuda from "./src/message/ajuda.js";
@@ -36,13 +36,15 @@ function main() {
     console.log("Client is ready!");
   });
   client.on("message", async (message) => {
-    spech_to_audio(message);
+    console.log(message);
+    // spech_to_audio(message);
     text_to_spech(message);
     image_to_sticker(message);
     saving_msg(message);
     avisos(message);
     ajuda(message);
     assistent(message)
+    spechAI(message);
     youtubeToMp3(message)
   });
 

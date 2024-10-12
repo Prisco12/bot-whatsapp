@@ -17,7 +17,7 @@ function base64ToTempFile(base64String, tempFilePath) {
 }
 
 const openai = new OpenAI({
-  apiKey: "sk-swcJGMEUnkrhSOWpl0tVbIi6YZjhhXur7-elNzEX46T3BlbkFJAQpw9FCPBurAuLwp-1DOblF_EIray1ZNTe_8i4bB8A",
+  apiKey: "",
 });
 
 export async function assistent(message) {
@@ -41,8 +41,6 @@ export async function spechAI(message) {
       console.log("Erro: mídia não disponível.");
       return;
     }
-    console.log(media.data);
-
    // Cria um caminho para o arquivo temporário
    const tempFilePath = path.join(__dirname, "temp_audio.mp3");
 
@@ -56,7 +54,6 @@ export async function spechAI(message) {
         model: "whisper-1",
       });
 
-      console.log(transcription);
       await message.reply(transcription.text);
        // Remove o arquivo temporário após o uso
       fs.unlinkSync(tempFilePath);

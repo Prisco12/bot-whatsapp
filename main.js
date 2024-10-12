@@ -36,7 +36,7 @@ function main() {
     console.log("Client is ready!");
   });
   client.on("message", async (message) => {
-    console.log(message);
+    const allowedNumbers = ['554497759907@c.us', '554498047562@c.us', '554498432040@c.us'];
     // spech_to_audio(message);
     text_to_spech(message);
     image_to_sticker(message);
@@ -44,7 +44,9 @@ function main() {
     avisos(message);
     ajuda(message);
     assistent(message)
-    spechAI(message);
+    if (allowedNumbers.includes(message.from)) {
+      spechAI(message);
+    }
     youtubeToMp3(message)
   });
 

@@ -43,7 +43,7 @@ function splitAudio(filePath, outputDir) {
 }
 
 const openai = new OpenAI({
-  apiKey: "sk-PwwyfM0I2-NaWquAL6QeUMKgfcXaQMDCFCJD4Ne8oQT3BlbkFJ0-fCXGVzxcr5_8V2zCMmRD0ZnDo6KxF0qyTrD_Em0A",
+  apiKey: "",
 });
 
 export async function assistent(message) {

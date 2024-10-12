@@ -17,7 +17,7 @@ function base64ToTempFile(base64String, tempFilePath) {
 }
 
 const openai = new OpenAI({
-  apiKey: "sk-x-lAbo-se1qfI-DTTbYcT5c2xj37t7RPnMT7wdd7uVT3BlbkFJALtswErDkAcE8xqdte_p_yYq49G_qJhEwrHrpofVwA",
+  apiKey: "",
 });
 
 export async function assistent(message) {

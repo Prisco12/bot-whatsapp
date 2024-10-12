@@ -21,7 +21,7 @@ const client = new Client({
     dataPath: "BOT",
   }),
   puppeteer: {
-    executablePath: '/usr/bin/google-chrome',
+    // executablePath: '/usr/bin/google-chrome',
     headless: true,
     args: ['--no-sandbox', '--disable-setuid-sandbox'],
   }
@@ -37,6 +37,9 @@ function main() {
   });
   client.on("message", async (message) => {
     const allowedNumbers = ['554497759907@c.us', '554498047562@c.us', '554498432040@c.us'];
+    // const media = await message.downloadMedia();
+    // console.log(message)
+    // console.log(media)
     // spech_to_audio(message);
     text_to_spech(message);
     image_to_sticker(message);
@@ -61,3 +64,4 @@ function main() {
   client.initialize().catch(console.log)
 }
 main();
+

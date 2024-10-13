@@ -1,9 +1,6 @@
 import OpenAI from"openai"
-import { Readable } from "stream"; // Para criar um stream do Buffer
-import FormData from "form-data";
 import fs from "fs";
 import path from "path";
-import lamejs from 'lamejs';
 
 import { fileURLToPath } from 'url';
 
